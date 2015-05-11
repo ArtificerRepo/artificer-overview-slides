@@ -50,7 +50,7 @@
 					<ul>
 						<li>Artificer, Project Lead</li>
 						<li>Senior Software Engineer, Red Hat</li>
-						<li>@brettemeyer</li>
+						<li><a href="http://twitter.com/brettemeyer" target="_blank">@brettemeyer</a></li>
 					</ul>
 				</section>
 
@@ -68,25 +68,379 @@
 							<li>Information, metadata, and "artifacts"</li>
 						</ul>
 					</section>
-
 					<section>
 						<h2>More Problems</h2>
 						<ul>
 							<li>Re-use and prevent duplicated efforts: hard</li>
 							<li>Understanding how everything connected, related, dependent: really hard</li>
-							<li>Minimal "breaking things": extremely hard</li>
+							<li>Minimal "breaking things" (early detection): extremely hard</li>
 						</ul>
 					</section>
-
 					<section>
 						<h2>Even Worse</h2>
 						<ul>
-							<li>All the problems, but within granular <em>content</em> of artifacts</li>
+							<li>Same problems, but within granular <em>content</em> of artifacts</li>
+							<li>Ex: XSD type declaration <-> WSDL message</li>
 						</ul>
 						<img src='images/run_away.jpg'/>
 					</section>
+					<section>
+						<h2>Oh So Many Problems</h2>
+						<ul>
+							<li>Tends to include a wide variety of bits</li>
+							<li>Files, including granular content</li>
+							<li>Files, no granular content considered</li>
+							<li>Custom metadata for each file</li>
+							<li>Logical, metadata-only "artifacts" (information)</li>
+						</ul>
+					</section>
 				</section>
 
+				<section>
+					<h2>Coffee Talk: Your Frustrations</h2>
+					<img src='images/coffeetalk.png'/>
+					<p>(Hoping someone actually understands that reference...)</p>
+				</section>
+
+				<section>
+					<section>
+						<h2>What's Needed?</h2>
+						<img src='images/carwash.gif'/>
+					</section>
+					<section>
+						<h2>Discovery & Re-Use</h2>
+						<!-- TODO -->
+					</section>
+					<section>
+						<h2>Impact & Dependency Analysis</h2>
+						<ul>
+							<li>Who uses this artifact?</li>
+							<li>How does this artifact fit into the larger picture?</li>
+							<li>If I change this file, who's affected?</li>
+							<li>If I change this <em>specific element</em> in a file, who's affected?</li>
+						</ul>
+					</section>
+					<section>
+						<h2>"Bigger Picture" Analysis</h2>
+						<ul>
+							<li>How does this artifact fit into our projects?</li>
+							<li>How does this artifact fit into our organization?</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Hierarchical Classification</h2>
+						<ul>
+							<li>"Tags", but more to it...</li>
+							<li>Hierarchical ontologies</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Lifecycle Management</h2>
+						<ul>
+							<li><em>Thin</em> interfaces only!</li>
+							<li>Workflow <em>utility</em></li>
+						</ul>
+					</section>
+					<section>
+						<h2>Auditing</h2>
+						<ul>
+							<li>Show me how this artifact has changed over time</li>
+							<li>Show me <em>who</em> changed this artifact</em></li>
+							<li>(Limited to metadata changes -- more on that later...)</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h2>Coffee Talk: What has worked for your organizations?</h2>
+					<img src='images/coffeetalk.png'/>
+				</section>
+
+				<section>
+					<section>
+						<h1>Artificer</h1>
+					</section>
+					<section>
+						<h2>Disclaimer</h2>
+						<img src='images/carsalesman.jpg'/>
+						<ul>
+							<li>No one likes sales pitches...so it won't be.</li>
+							<li>General discussion of approaches, using Artificer as an example</li>
+							<li>But it <em>is</em> pretty sweet...</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Artificer Overview</h2>
+						<ul>
+							<li>100% open source project, backed by JBoss/Red Hat (Apache license)</li>
+							<li>Formerly "Overlord S-RAMP"</li>
+							<li><a href="http://artificer.jboss.org" target="_blank">artificer.jboss.org</a></li>
+							<li><a href="https://twitter.com/ArtificerRepo" target="_blank">@ArtificerRepo</a></li>
+							<li>Nearing 1.0.0.Final</li>
+							<li>Lots of awesome features on the <a href="http://artificer.jboss.org/roadmap.html" target="_blank">roadmap</a></li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Common Data Model</h2>
+						<ul>
+							<li>Desperate information</li>
+							<li>Extremely varied</li>
+							<li>Vital: normalizing into common data model
+								<ul>
+									<li>Abstract and flexible</li>
+									<li>Powerful and all-encompassing, OOTB</li>
+									<li>Extendible</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Common Data Model (cont'd)</h2>
+						<ul>
+							<li>Physical <em>and</em> logical artifacts</li>
+							<li>Interconnected (bi-directional)</li>
+							<li>Hierarchical</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Common Data Model (cont'd)</h2>
+						<ul>
+							<li>"Modeled" metadata: provide the "core" data OOTB</li>
+							<li>Auto-detection of artifact types
+								<ul>
+									<li>Not just MIME!</li>
+									<li>"If file 'foo' is present in the archive, it's A.  Otherwise, B."</li>
+									<li>"If the content includes 'foo', it's A.  Otherwise, B."</li>
+								</ul>
+							</li>
+							<li>Ad-hoc metadata</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Common Data Model (cont'd)</h2>
+						<ul>
+							<li>"Primary": main artifact</li>
+							<li>"Derived": logical artifacts pulled from primary content (ex: type declarations from XSD)</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Derivation</h2>
+						<ul>
+							<li>Auto creates "derived" logical artifacts from the primary</li>
+							<li>Examples:
+								<ul>
+									<li>Type declarations in XSDs</li>
+									<li>Messages/ports/endpoints in WSDLs</li>
+									<li>Many more...</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>OOTB Data Types</h2>
+						<ul>
+							<li>Provide "enough" OOTB to be immediately useful</li>
+							<li>Examples:
+								<ul>
+									<li>Basic "document"</li>
+									<li>XML</li>
+									<li>XSD</li>
+									<li>WSDL</li>
+									<li>WS-Policy</li>
+									<li>Java</li>
+									<li>Office</li>
+									<li>(Artificer also provides plugins for other types of JBoss projects)</li>
+									<li>(Many more planned...)</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Logical Data Types (Examples)</h2>
+						<ul>
+							<li>Service information</li>
+							<li>Teams</li>
+							<li>Metrics</li>
+							<li>Policies</li>
+							<li>Deployment information</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Relationships</h2>
+						<ul>
+							<li>Bi-directional</li>
+							<li>Between <em>any</em> artifacts</li>
+							<li>Relationship name</li>
+							<li>1..n targets</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Relationships (cont'd)</h2>
+						<ul>
+							<li>Maybe the most important piece to get <em>right</em></li>
+							<li>Relationships between <em>both</em> primary and derived</li>
+							<li>Support both <em>automatic</em> relationships and <em>ad-hoc</em></li>
+							<li>Auto relationship examples: WSDL imports XSD, WS doc'd by WSDL, etc.</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h2>Classifications</h2>
+					<ul>
+						<li>Hierarchical "tags"</li>
+						<li>"Hierarchical" == powerful, especially for queries</li>
+						<li>Web Ontology Language (OWL)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Query Language</h2>
+					<ul>
+						<li>Encapsulates all areas of metadata</li>
+						<li>Can chain 0..n relationship paths</li>
+						<li>Full text search</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Extensibility</h2>
+					<ul>
+						<li>Compile-type contracts
+							<ul>
+								<li>Artifact "builders": derivation, custom metadata, etc.</li>
+								<li>Artifact type detection</li>
+							</ul>
+						</li>
+						<li>Ad-hoc <em>everything</em></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Interfaces & Integrations</h2>
+					<ul>
+						<li>REST/ATOM</li>
+						<li>Web UI</li>
+						<li>SDKs</li>
+						<li>CLI</li>
+						<li>Others: EJB, JMS, etc.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Visualizations</h2>
+					<ul>
+						<li><em>Really hard</em></li>
+						<li>Useful for impact analysis and dependencies overview</li>
+						<li>Visualize the relationship <em>graph</em></li>
+						<li>Need to be "smart" and show enough, but not too much</li>
+					</ul>
+				</section>
+
+				<section>
+					<section>
+						<h2>Artificer Specifics</h2>
+						<ul>
+							<li><strong>Everything we just talked about!</strong></li>
+							<li>"Not Just Another Repo"</li>
+							<li>Powerful data, powerful tooling</li>
+							<li>Can be nearly "auto everything"</li>
+							<li>Valuable info, relationships, context, etc. over simple repos</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Artificer Specifics (cont'd)</h2>
+						<ul>
+							<li>Maven (& Gradle): Includes a Maven Repo "Facade"
+								<ul>
+									<li>Acts just like any other Maven repo</li>
+									<li>Publish and consume</li>
+									<li><em>Can</em> replace your existing repo, <em>or</em> augment it</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Artificer Specifics (cont'd)</h2>
+						<ul>
+							<li>Performant, vertically scalable, horizontally scalable
+								<ul>
+									<li>RDBMS + JPA (Hibernate) + Caching (Infinispan) + Indexed Search (Lucene/Hibernate Search)</li>
+									<li>JCR (ModeShape) + Infinispan</li>
+									<li>Planned: NoSQL + Hibernate OGM</li>
+									<li><em>Maybe</em>: Graph DBs</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Artificer Specifics (cont'd)</h2>
+						<ul>
+							<li>Mostly built on solid JBoss platforms:
+								<ul>
+									<li>Wildfly/EAP</li>
+									<li>Hibernate Family</li>
+									<li>ModeShape</li>
+									<li>Keycloak</li>
+									<li>Errai</li>
+									<li>Aesh</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Artificer Specifics (cont'd)</h2>
+						<ul>
+							<li>OASIS S-RAMP
+								<ul>
+									<li>Fully-compliant with OASIS S-RAMP spec</li>
+									<li>...for now (fairly dead spec)</li>
+									<li>Foundation of data model, query syntax, and REST/Atom binding</li>
+									<li>Mostly SOA-centric</li>
+									<li>We extend well beyond the spec</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Artificer Specifics (cont'd)</h2>
+						<ul>
+							<li><a href="https://registry.hub.docker.com/repos/artificer/" target="_blank">Docker</a> (and therefore OpenShift V3)</li>
+							<li>IDE (Eclipse) integration, coming soon</li>
+							<li>Multiple extension point contracts, but...</li>
+							<li>...soon replacing with a new, powerful plugin architecture</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h2>Coffee Talk: Artificer Features & Ideas</h2>
+					<img src='images/coffeetalk.png'/>
+				</section>
+
+				<section>
+					<section>
+						<h2>Out of Left Field</h2>
+						<ul>
+							<li>Software was the original purpose</li>
+							<li>Useful in many other ways</li>
+							<li><em>Any</em> type of hierarchical, inter-connected information</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Example: "Getting Things Done" (David Allen)</h2>
+						<ul>
+							<li>Works surprisingly well</li>
+							<li>More info: <a href="https://github.com/ArtificerRepo/artificer/tree/master/demos/end-to-end-use-case/getting-things-done" target="_blank">Demo GitHub README</a></li>
+						</ul>
+					</section>
+				</section>
 			</div>
 
 		</div>
